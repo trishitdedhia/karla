@@ -1,14 +1,15 @@
 #!/bin/bash
+path=`dirname $BASH_SOURCE`
 
 argumentManager () {
     case $1 in
         "ascii")
             if [[ -f $2 && $3 == "" ]]
             then
-                python3 convert.py $2
+                python3 $path/convert.py $2
             elif [[ -f $2 ]]
             then
-                python3 convert.py $2 > $3
+                python3 $path/convert.py $2 > $3
             else
                 echo "inccorect file"
             fi
