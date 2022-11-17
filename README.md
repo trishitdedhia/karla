@@ -1,2 +1,2 @@
-# Penne
-Image processing utility with CLI
+# Karla
+A multi-functional CLI utlity.
