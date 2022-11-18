@@ -2,22 +2,42 @@
 path=`dirname $BASH_SOURCE`
 
 argumentManager () {
-    case $1 in
-        "ascii")
-            if [[ -f $2 && $3 == "" ]]
-            then
-                python3 $path/support/convert.py $2
-            elif [[ -f $2 ]]
-            then
-                python3 $path/support/convert.py $2 > $3
-            else
-                echo "inccorect file"
-            fi
-            ;;
-        *)
-            echo "error"
-            ;;
-    esac
+    echo "Hello World : $1 $2"
+    if [[ -d "support/$1" ]]
+    then
+        echo "Sending $@ to $1/main.py!"
+        python3 support/$1/main.py $2
+    else
+
+        case $1 in
+            #PRINT USAGE
+            "--help" | "-h")
+                cat info.txt
+                exit 0
+                ;;
+
+            #PRINT VERSION
+            "--version" | "-v")
+                cat info.txt | head -1
+                ;;
+
+            #UPDATE
+            "--update" | "-u")
+                if [[ -d support/$2 ]]
+                then
+                    rm -rf support/$2
+                    git clone https://github.com/trishitdedhia/$2.git support/$2
+                fi
+                ;;
+
+            #DEFAULT
+            *)
+                echo "Incorrect usage of command"
+
+            esac
+
+    fi           
+                
 }
 
 argumentManager "$@"
