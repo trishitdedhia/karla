@@ -1,43 +1,76 @@
 #!/bin/bash
 path=`dirname $BASH_SOURCE`
 
-argumentManager () {
-    echo "Hello World : $1 $2"
-    if [[ -d "support/$1" ]]
-    then
-        echo "Sending $@ to $1/main.py!"
-        python3 support/$1/main.py $2
-    else
 
+usageError () {
+    echo "Usuage Error"
+}
+
+argumentManager () {
+    if [[ -d "$path/support/$1" ]]
+    then
+
+        python3 $path/support/$1/main.py $@
+        shift $#
+
+    elif (( $# == 1 ))
+    then 
+        
+        #CASE
         case $1 in
             #PRINT USAGE
             "--help" | "-h")
-                cat info.txt
+                cat $path/info.txt
                 exit 0
                 ;;
 
             #PRINT VERSION
             "--version" | "-v")
-                cat info.txt | head -1
+                cat $path/info.txt | head -1
+                exit 0
                 ;;
+
+            #INCORRECT USAGE
+            *)
+                usageError
+                exit 0
+                ;;
+        esac
+
+    #TWO ARGUMENT FUNCTIONS
+    elif (( $# == 2 ))
+    then
+
+        case $1 in
 
             #UPDATE
             "--update" | "-u")
-                if [[ -d support/$2 ]]
+                if [[ -d $path/support/$2 ]]
                 then
-                    rm -rf support/$2
-                    git clone https://github.com/trishitdedhia/$2.git support/$2
+                    rm -rf $path/support/$2
+                    git clone https://github.com/trishitdedhia/$2.git $path/support/$2
+                    exit 0
                 fi
+                ;;
+
+            #PRINT VERSION
+            "--version" | "-v")
+                cat $path/support/$2/info.txt | head -1
+                exit 0
                 ;;
 
             #DEFAULT
             *)
-                echo "Incorrect usage of command"
-
+                usageError
+                exit 0
+                ;;
             esac
 
     fi           
                 
 }
 
-argumentManager "$@"
+while [[ $# != 0 ]]
+do
+    argumentManager "$@"
+done
