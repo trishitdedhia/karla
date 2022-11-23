@@ -1,23 +1,109 @@
 #!/bin/bash
 path=`dirname $BASH_SOURCE`
 
-argumentManager () {
-    case $1 in
-        "ascii")
-            if [[ -f $2 && $3 == "" ]]
-            then
-                python3 $path/support/convert.py $2
-            elif [[ -f $2 ]]
-            then
-                python3 $path/support/convert.py $2 > $3
-            else
-                echo "inccorect file"
-            fi
-            ;;
-        *)
-            echo "error"
-            ;;
-    esac
+
+usageError () {
+    echo "Usuage Error"
 }
 
-argumentManager "$@"
+argumentManager () {
+    if [[ -d "$path/support/$1" ]]
+    then
+
+        echo "Running $1..."
+        python3 $path/support/$1/main.py $@
+        exit 0
+
+    elif (( $# == 1 ))
+    then 
+        
+        #CASE
+        case $1 in
+            #PRINT USAGE
+            "--help" | "-h")
+                cat $path/info.txt
+                exit 0
+                ;;
+
+            #PRINT VERSION
+            "--version" | "-v")
+                cat $path/info.txt | head -1
+                exit 0
+                ;;
+
+            #SELF UPDATE
+            "update" | "u" | "upgrade")
+                git init
+                git remote add origin git://github.com/trishitdedhia/karla.git
+                git fetch --all
+                git pull origin master
+
+                exit 0
+                ;;
+
+            #INCORRECT USAGE
+            *)
+                usageError
+                exit 0
+                ;;
+        esac
+
+    #TWO ARGUMENT FUNCTIONS
+    elif (( $# == 2 ))
+    then
+
+        case $1 in
+
+            #UPDATE
+            "--update" | "-u")
+                if [[ -d $path/support/$2 ]]
+                then
+                    rm -rf $path/support/$2
+                    git clone https://github.com/trishitdedhia/$2.git $path/support/$2
+                    exit 0
+                fi
+                ;;
+
+            #PRINT VERSION
+            "--version" | "-v")
+                cat $path/support/$2/info.txt | head -1
+                exit 0
+                ;;
+
+            #LEARN
+            "learn" | "install")
+                if [[ -d $path/support/$2 ]]
+                then
+                    echo "I already know this skill!"
+                else
+                    git clone https://github.com/trishitdedhia/$2.git $path/support/$2
+                fi
+                exit 0
+                ;;
+            
+            #FORGET
+            "forget" | "unlearn")
+                if [[ -d $path/support/$2 ]]
+                then
+                    rm -rf $path/support/$2
+                else
+                    echo "I didn't know about $2 anyway!"
+                fi
+                exit 0
+                ;;
+
+            #DEFAULT
+            *)
+                usageError
+                exit 0
+                ;;
+            esac
+
+    fi           
+                
+}
+
+while [[ $# != 0 ]]
+do
+    argumentManager "$@"
+done
