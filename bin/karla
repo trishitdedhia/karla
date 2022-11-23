@@ -10,8 +10,9 @@ argumentManager () {
     if [[ -d "$path/support/$1" ]]
     then
 
+        echo "Running $1..."
         python3 $path/support/$1/main.py $@
-        shift $#
+        exit 0
 
     elif (( $# == 1 ))
     then 
@@ -32,7 +33,11 @@ argumentManager () {
 
             #SELF UPDATE
             "update" | "u" | "upgrade")
-                git pull
+                git init
+                git remote add origin git://github.com/trishitdedhia/karla.git
+                git fetch --all
+                git pull origin master
+
                 exit 0
                 ;;
 
