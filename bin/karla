@@ -1,5 +1,7 @@
 #!/bin/bash
 path=`dirname $BASH_SOURCE`
+path_home=`dirname $path`
+path_parent=`dirname $path_home`
 
 
 usageError () {
@@ -33,11 +35,8 @@ argumentManager () {
 
             #SELF UPDATE
             "update" | "u" | "upgrade")
-                git init
-                git remote add origin git://github.com/trishitdedhia/karla.git
-                git fetch --all
-                git pull origin master
-
+                git clone git://github.com/trishitdedhia/karla.git
+                mv karla $path_parent
                 exit 0
                 ;;
 
