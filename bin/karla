@@ -37,7 +37,7 @@ argumentManager () {
                 ;;
 
             #SELF UPDATE
-            "update" | "u" | "upgrade")
+            "update" | "upgrade")
                 (cd $path_home && git reset --hard)
                 exit 0
                 ;;
@@ -56,12 +56,15 @@ argumentManager () {
         case $1 in
 
             #UPDATE
-            "--update" | "-u")
+            "update" | "upgrade")
                 if [[ -d $path/support/$2 ]]
                 then
                     rm -rf $path/support/$2
                     git clone https://github.com/trishitdedhia/$2.git $path/support/$2
                     exit 0
+                else
+                    echo "I don't know about $2."
+                    echo "Try => karla learn $2"
                 fi
                 ;;
 
