@@ -35,9 +35,7 @@ argumentManager () {
 
             #SELF UPDATE
             "update" | "u" | "upgrade")
-                git init
-                git fetch
-                git reset --hard HEAD
+                git reset --hard
                 exit 0
                 ;;
 
