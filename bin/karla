@@ -38,7 +38,7 @@ argumentManager () {
 
             #SELF UPDATE
             "update" | "u" | "upgrade")
-                git reset --hard
+                (cd $path_home && git reset --hard)
                 exit 0
                 ;;
 
