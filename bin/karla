@@ -13,7 +13,10 @@ argumentManager () {
     then
 
         echo "Running $1..."
-        python3 $path/support/$1/main.py $@
+        paw="$path/support/$1/main.py"
+        shift 1
+        python3 $paw $@
+        #echo $@
         exit 0
 
     elif (( $# == 1 ))
