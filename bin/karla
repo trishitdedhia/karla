@@ -35,8 +35,9 @@ argumentManager () {
 
             #SELF UPDATE
             "update" | "u" | "upgrade")
-                git clone git://github.com/trishitdedhia/karla.git
-                mv karla $path_parent
+                git init
+                git fetch
+                git reset --hard HEAD
                 exit 0
                 ;;
 
