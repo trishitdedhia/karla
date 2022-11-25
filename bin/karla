@@ -12,7 +12,7 @@ argumentManager () {
     if [[ -d "$path/support/$1" ]]
     then
 
-        echo "Running $1..."
+        #echo "Running $1..."
         paw="$path/support/$1/main.py"
         shift 1
         python3 $paw $@
