@@ -88,6 +88,7 @@ argumentManager () {
                 else
                     echo "I don't know about $2."
                     echo "Try => karla learn $2"
+                    exit 1
                 fi
                 ;;
 
