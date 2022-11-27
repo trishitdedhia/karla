@@ -61,7 +61,7 @@ argumentManager () {
 
             #SELF UPDATE
             "update" | "upgrade")
-                (cd $path_home && git reset --hard)
+                (cd $path_home && git reset --hard 1> /dev/null; git pull)
                 exit 0
                 ;;
 
