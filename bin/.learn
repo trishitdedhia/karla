@@ -1,0 +1,11 @@
+#!/bin/bash
+
+learn () {
+  if (( `grep $2 $1/.index | wc -l` == 1 ))
+  then
+    link=`grep $2 $1/.index | cut -d " " -f 2`
+    git clone $link $1/support/$2
+  else
+    echo "'$2' is not a skill I can learn!"
+  fi
+}

@@ -19,7 +19,7 @@ listSkills () {
     fi
 
     echo "### skills #############################"
-    for i in `ls support`
+    for i in `ls $path/support`
     do
         if [[ -f $path/support/$i/info.txt ]]
         then
@@ -55,7 +55,7 @@ argumentManager () {
 
             #PRINT VERSION
             "--version" | "-v")
-                cat $path/info.txt | head -1
+                cat $path_home/.info | head -1
                 exit 0
                 ;;
 
@@ -111,7 +111,9 @@ argumentManager () {
                 then
                     echo "I already know this skill!"
                 else
-                    git clone https://github.com/trishitdedhia/$2.git $path/support/$2
+                    #git clone https://github.com/trishitdedhia/$2.git $path/support/$2
+                    source .learn
+                    learn $path $2
                 fi
                 exit 0
                 ;;
