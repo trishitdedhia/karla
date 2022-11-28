@@ -1,0 +1,33 @@
+#!/bin/bash
+
+tap () {
+
+  if [[ -f $1/.usr_formulae ]]
+  then
+    echo ".usr_formulae detected."
+  else
+    touch $1/.usr_formulae
+    echo ".usr_formula created."
+  fi
+  
+  #CHECK IF ARGUMENTS PASSED ARE CORRECT
+  if (( $# != 3 ))
+  then
+    echo "Arguments not passed appropriately!"
+    echo "Tap usage => karla tap <name> <git_repository_link>"
+    exit 0
+
+  #Ensure name isn't being used already
+  elif (( `grep $2 $1/.usr_formulae | wc -l` > 0  | `grep $2 $1/.index | wc -l` > 0 ))
+  then
+    echo "Failed to tap $2"
+    echo "Name is already being used with another formulae!"
+    exit 0
+
+  #APPEND .usr_formula
+  else
+    echo "$2 $3" >> $1/.usr_formulae
+    echo "$2 Tapped!"
+  fi
+
+}

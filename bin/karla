@@ -32,7 +32,18 @@ listSkills () {
 }
 
 argumentManager () {
-    if [[ -d "$path/support/$1" ]]
+    #TAP FORMULAE
+    if [[ $1 == "tap" ]]
+    then
+        
+        #SOURCE AND RUN TAP
+        source .tap
+        shift 1
+        tap $path $@
+        exit 0
+
+    #RUN COMMANDS
+    elif [[ -d "$path/support/$1" ]]
     then
 
         #echo "Running $1..."
@@ -42,6 +53,7 @@ argumentManager () {
         #echo $@
         exit 0
 
+    #ONE ARGUMENT FUNCTIONS
     elif (( $# == 1 ))
     then 
         
@@ -147,8 +159,7 @@ argumentManager () {
                 exit 0
                 ;;
             esac
-
-    fi           
+    fi 
                 
 }
 
