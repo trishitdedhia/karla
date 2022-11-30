@@ -15,7 +15,7 @@ Karla is a bash-based package manager and executor for specifically image proces
 Karla is still not availbale on any existing package manager like brew. But until then, you can use git to directly get the latest version of Karla from the command line.
 
 ```
-git clone https://github.com/trishitdedhia/karla.git /usr/local/
+git clone https://github.com/trishitdedhia/karla.git /usr/local/karla
 ```
 
 <!-- ADD PATH-->
@@ -95,6 +95,6 @@ karla tap <skill_name> <git_repository_link>
 ## Uninstall Karla
 All files are located inside `/usr/local/karla` by default. To install Karla you can simply remove all that folder and its contents using:
 ```
-rm -ir /usr/local/karla
+rm -rf /usr/local/karla
 ```
 You can also edit `~/.zshrc` or `~/.bashrc` where the command to export Karla's path is located and simply delete the line.
