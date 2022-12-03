@@ -31,6 +31,25 @@ listSkills () {
     echo ""
 }
 
+exeSkill() {
+    paw="$path/support/$1"
+    shift 1
+
+    if [[ -f $paw/main.py ]]
+    then
+
+        python3 $paw/main.py $@
+
+    elif [[ -f $paw/main ]]
+    then
+        $paw/main $@
+    else
+        echo "Startup bash script 'main' or python programme 'main.py' not found."
+        echo "Try updating the skill."
+        exit 1
+    fi
+}
+
 argumentManager () {
     #TAP FORMULAE
     if [[ $1 == "tap" ]]
@@ -46,11 +65,7 @@ argumentManager () {
     elif [[ -d "$path/support/$1" ]]
     then
 
-        #echo "Running $1..."
-        paw="$path/support/$1/main.py"
-        shift 1
-        python3 $paw $@
-        #echo $@
+        exeSkill $@
         exit 0
 
     #ONE ARGUMENT FUNCTIONS
