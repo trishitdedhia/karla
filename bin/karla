@@ -119,19 +119,6 @@ argumentManager () {
                 fi
                 ;;
 
-            #PRINT VERSION
-            "--version" | "-v")
-                if [[ -d $path/support/$2 ]]
-                then
-                    cat $path/support/$2/info.txt | head -1
-                else
-                    echo "I don't know about $2."
-                    echo "Try => karla learn $2"
-                    exit 1
-                fi
-                exit 0
-                ;;
-
             #LEARN
             "learn" | "install")
                 if [[ -d $path/support/$2 ]]
