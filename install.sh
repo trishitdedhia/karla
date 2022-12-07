@@ -17,6 +17,7 @@ fi
 echo "" >> $file
 echo "# >>>>> KARLA >>>>>" >> $file
 echo 'export PATH="$PATH:/usr/local/karla/bin"' >> $file
+echo 'export MANPATH="$MANPATH:/usr/local/karla/man' >> $file
 echo "# <<<<< KARLA <<<<<" >> $file
 
 echo "Path exported."

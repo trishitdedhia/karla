@@ -92,6 +92,12 @@ argumentManager () {
                 exit 0
                 ;;
 
+            #SHOW
+            "show")
+                listSkills
+                exit 0
+                ;;
+
             #INCORRECT USAGE
             *)
                 usageError
@@ -110,7 +116,10 @@ argumentManager () {
                 if [[ -d $path/support/$2 ]]
                 then
                     rm -rf $path/support/$2
-                    git clone https://github.com/trishitdedhia/$2.git $path/support/$2
+                    source .learn
+                    learn $path $2
+                    source .moveman
+                    moveman $path_home $2
                     exit 0
                 else
                     echo "I don't know about $2."
@@ -128,6 +137,8 @@ argumentManager () {
                     #git clone https://github.com/trishitdedhia/$2.git $path/support/$2
                     source .learn
                     learn $path $2
+                    source .moveman
+                    moveman $path_home $2
                 fi
                 exit 0
                 ;;
@@ -144,7 +155,7 @@ argumentManager () {
                 ;;
 
             #LIST
-            "list" | "show")
+            "list")
                 if  [[ $2 == "skills" ]]
                 then
                     listSkills
