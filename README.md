@@ -1,5 +1,5 @@
 # Karla
-Karla is a bash-based package manager and executor for specifically image processing utilities on the command line interface.
+Karla is a bash-based package manager and executor for image processing utilities on the command line interface.
 <br><br>
 
 > ### Creator's Note
@@ -30,33 +30,32 @@ If you already have a `.zshrc` or `.bashrc` setup, you can simply run the instal
 
 <h4 style="color: lightblue">OPTION 2 - Add it Manually</h4>
 
-You can export the path by adding the following line to `.bashrc` or `.zshrc` depending on your system and your preferences.
+You can export the path by adding the following lines to `.bashrc` or `.zshrc` depending on your system and your preferences.
 ```
-export PATH="$PATH:/usr/local/karla/bin"
+export PATH="$PATH:<path>/bin"
+export MANPATH="$MANPATH:<path>/man"
 ```
 <br>
 
 ## Usage
-Karla works on a simple logic, you can learn skills by running the following:
+You can learn skills by running the following:
 ```
 karla learn <skill_name>
 ```
 
-You can then execute the skill using:
+You can then execute the skills using:
 ```
 karla <skill_name> [options]
 ```
-<br><br>
 
 To see a list of the skills karla knows:
 ```
-karla show skills
+karla show
 ```
 To add unlearn a skill:
 ```
 karla unlearn <skill_name>
 ```
-<br><br>
 
 For more information you can always do either one of the following:
 ```
@@ -76,10 +75,16 @@ The following is a list of the official packages that Karla can learn:
     <td>Converts images to ascii text art</td>
 </tr>
 <tr>
-    <td>Replace</td>
+    <td>Repaint</td>
     <td>Repaints specific pixels</td>
 </tr>
+<tr>
+    <td>Bleach</td>
+    <td>Sets all the pixels in an image to one colour while retaining the alpha values</td>
+</tr>
 </table>
+
+<br><br>
 
 ## Make Karla Learn Custom Packages
 Karla already has a set of listed packages than you can install. However if you wish to make Karla learn a specific package, you must tap a new formula.
@@ -97,4 +102,4 @@ All files are located inside `/usr/local/karla` by default. To install Karla you
 ```
 sudo rm -rf /usr/local/karla
 ```
-You can also edit `~/.zshrc` or `~/.bashrc` where the command to export Karla's path is located and simply delete the line.
+You can also edit `~/.zshrc` or `~/.bashrc` where the commands to export Karla's path are located.
