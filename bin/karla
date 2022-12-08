@@ -145,12 +145,8 @@ argumentManager () {
             
             #FORGET
             "forget" | "unlearn")
-                if [[ -d $path/support/$2 ]]
-                then
-                    rm -rf $path/support/$2
-                else
-                    echo "I didn't know about $2 anyway!"
-                fi
+                source .forget
+                forget $path $path_home $2
                 exit 0
                 ;;
 

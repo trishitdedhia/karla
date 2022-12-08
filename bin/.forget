@@ -1,0 +1,42 @@
+#!/bin/bash
+
+#Main function
+forget () {
+
+  #Set all variables
+  path=$1
+  path_home=$2
+  skill=$3
+
+  #Check if skill exists
+  if [[ -d $path/support/$skill ]]
+  then
+    echo "Removing the following files..."
+    for file in `ls $path/support/$skill`
+    do
+      echo "> $file"
+    done
+  else
+    echo "Skill not found!"
+    exit 1
+  fi
+
+  #Remove files
+  rm -Rf $path/support/$skill
+  if [[ $? == 0 ]]
+  then
+    echo "Unlearnt $skill."
+  else
+    echo "Failed to forget $skill."
+  fi
+
+  #Remove man page
+  echo "Removing man pages for $skill."
+  rm -f $path_home/man/man1/$skill*
+  if [[ $? == 0 ]]
+  then
+    echo "Manpage for $skill removed."
+  else
+    echo "Failed to remove manpages!"
+  fi
+}
