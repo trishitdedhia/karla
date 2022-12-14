@@ -10,19 +10,29 @@ forget () {
 
   if [[ $3 == "all" ]]
   then
+
+    # If no skills exist
     skills=`ls $path/support | wc -l`
     if (( skills == 0 ))
     then
       echo "No skills found to forget!"
       exit 1
+
+    # Remove all skills
     else
+
+      # Run a loop for each skill
+      echo "Unlearning all skills"
       for sk in `ls $path/support`
       do
         remove $path $path_home $sk
       done
     fi
+
+  # Remove particular skill
   else
-    forget $@
+    remove $@
+    exit 0
   fi
 
 }
@@ -37,7 +47,7 @@ remove () {
   #Check if skill exists
   if [[ -d $path/support/$skill ]]
   then
-    echo "Removing the following files..."
+    echo "Removing the following files from $3..."
     for file in `ls $path/support/$skill`
     do
       echo "> $file"
@@ -65,4 +75,7 @@ remove () {
   else
     echo "Failed to remove manpages!"
   fi
+
+  exit 0
+
 }
