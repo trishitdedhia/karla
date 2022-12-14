@@ -5,7 +5,9 @@ path_parent=`dirname $path_home`
 
 
 usageError () {
-    echo "Usuage Error"
+    echo "Incorrect Usage."
+    echo "Please try 'man karla' to learn more."
+
 }
 
 #List skills function
