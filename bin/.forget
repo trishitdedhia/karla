@@ -76,6 +76,5 @@ remove () {
     echo "Failed to remove manpages!"
   fi
 
-  exit 0
 
 }
