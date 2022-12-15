@@ -1,4 +1,4 @@
-# Karla
+# Karla v1.0.0
 Karla is a bash-based package manager and executor for image processing utilities on the command line interface.
 <br><br>
 
