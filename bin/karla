@@ -78,13 +78,13 @@ argumentManager () {
         case $1 in
             #PRINT USAGE
             "--help" | "-h")
-                cat $path/info.txt
+                cat $path/.help
                 exit 0
                 ;;
 
             #PRINT VERSION
             "--version" | "-v")
-                cat $path_home/.info | head -1
+                head -1 $path/.help
                 exit 0
                 ;;
 

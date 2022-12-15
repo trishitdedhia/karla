@@ -1,0 +1,5 @@
+Karla (built by Trishit Dedhia) Version 1.0.0
+
+Karla is a package manager designed specifically to manage and run image processing libraries. See documentation at https://github.com/trishitdedhia/karla for more information.
+
+For usage => man karla
