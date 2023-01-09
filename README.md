@@ -52,7 +52,7 @@ To see a list of the skills karla knows:
 ```
 karla show
 ```
-To add unlearn a skill:
+To unlearn a skill:
 ```
 karla unlearn <skill_name>
 ```
